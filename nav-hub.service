@@ -1,0 +1,17 @@
+[Unit]
+Description=Nav hub (website navigation page)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/nav
+# 保存密码，不需要的话删掉这一行
+Environment=NAV_TOKEN=admin@2026
+ExecStart=/usr/bin/python3 /opt/nav/server.py --bind 0.0.0.0 --port 9000
+Restart=always
+RestartSec=3
+User=nav
+Group=nav
+
+[Install]
+WantedBy=multi-user.target
